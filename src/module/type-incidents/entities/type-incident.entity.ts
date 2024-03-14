@@ -1,13 +1,13 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({ name: "type_incident" })
+@Entity({ name: 'type_incident' })
 export class TypeIncident {
-    @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn('uuid')
   ti_id: string;
 
-  @Column({ type: 'varchar' })
+  @Column({ type: 'varchar', unique: true })
   ti_name: string;
 
-  @Column({ type: 'bool' })
+  @Column({ type: 'bool', default: true })
   ti_estatus: boolean;
 }
