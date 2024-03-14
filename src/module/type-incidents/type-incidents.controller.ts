@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, ParseUUIDPipe } from '@nestjs/common';
 import { TypeIncidentsService } from './type-incidents.service';
 import { CreateTypeIncidentDto } from './dto/create-type-incident.dto';
 import { UpdateTypeIncidentDto } from './dto/update-type-incident.dto';
@@ -18,17 +18,17 @@ export class TypeIncidentsController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.typeIncidentsService.findOne(+id);
+  findOne(@Param('id', ParseUUIDPipe) id: string) {
+    return this.typeIncidentsService.findOne(id);
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateTypeIncidentDto: UpdateTypeIncidentDto) {
-    return this.typeIncidentsService.update(+id, updateTypeIncidentDto);
+  update(@Param('id', ParseUUIDPipe) id: string, @Body() updateTypeIncidentDto: UpdateTypeIncidentDto) {
+    return this.typeIncidentsService.update(id, updateTypeIncidentDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.typeIncidentsService.remove(+id);
+  remove(@Param('id', ParseUUIDPipe) id: string) {
+    return this.typeIncidentsService.remove(id);
   }
 }

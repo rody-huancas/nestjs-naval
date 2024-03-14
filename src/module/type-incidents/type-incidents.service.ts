@@ -12,15 +12,15 @@ export class TypeIncidentsService {
     return `This action returns all typeIncidents`;
   }
 
-  findOne(id: number) {
+  findOne(id: string) {
     return `This action returns a #${id} typeIncident`;
   }
 
-  update(id: number, updateTypeIncidentDto: UpdateTypeIncidentDto) {
+  update(id: string, updateTypeIncidentDto: UpdateTypeIncidentDto) {
     return `This action updates a #${id} typeIncident`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} typeIncident`;
   }
 }
