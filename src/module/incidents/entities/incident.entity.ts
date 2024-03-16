@@ -1,7 +1,7 @@
+import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Company } from 'src/module/companies/entities/company.entity';
 import { TypeIncident } from 'src/module/type-incidents/entities/type-incident.entity';
 import { User } from 'src/module/users/entities/user.entity';
-import { Column, Entity, PrimaryGeneratedColumn, ManyToOne, JoinColumn } from 'typeorm';
 
 @Entity({ name: 'incident' })
 export class Incident {
@@ -11,22 +11,31 @@ export class Incident {
   @Column({ type: 'varchar', unique: true })
   in_description: string;
 
-  
-  @Column({ type: 'string', default: true })
+  @Column({ type: 'uuid' }) // id user
+  in_iduser: string;
+
+  @Column({ type: 'uuid'}) // id type incident
+  in_idtypein: string;
+
+  @Column({ type: 'varchar' })
   in_date: string;
-  
-  @Column({ type: 'string', default: true })
+
+  @Column({ type: 'varchar' })
   in_site: string;
 
-  @ManyToOne(() => User)
+  @Column({ type: 'uuid' }) // id company
+  in_idcomp: string;
+
+  // Relations
+  @ManyToOne(() => User, { eager: true })
   @JoinColumn({ name: 'in_iduser' })
   user: User;
 
-  @ManyToOne(() => TypeIncident)
+  @ManyToOne(() => TypeIncident, { eager: true })
   @JoinColumn({ name: 'in_idtypein' })
-  typeIncident: TypeIncident;
+  type_incident: TypeIncident;
 
-  @ManyToOne(() => Company)
+  @ManyToOne(() => Company, { eager: true })
   @JoinColumn({ name: 'in_idcomp' })
   company: Company;
 }
